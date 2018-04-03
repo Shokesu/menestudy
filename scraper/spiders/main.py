@@ -21,12 +21,4 @@ class MainSpider(scrapy.Spider):
 
         for noticia in response.xpath("//div[@class='news-summary']"):
             id = noticia.xpath(".//div[@class='menealo']")[0].xpath("@id").extract_first()
-            subm = Submission(id)
-
-
-
-
-
-
-
-        self.logger.info('Saving file {}'.format(filename))
+            yield Submission(id=id)
